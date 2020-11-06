@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IoMdArrowBack } from 'react-icons/io'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 
 export const Container = styled.div`
   flex: 1;
@@ -13,9 +13,9 @@ export const Title = styled.h1`
   margin-top: 20%;
   color: #fff;
 `
-export const ArrowBack = styled(IoMdArrowBack)`
+export const ArrowBack = styled(ArrowLeftOutlined)`
   margin-top: 10%;
   align-self: flex-start;
-  font-size: 50px;
+  font-size: 35px;
   color: #fff;
 `
