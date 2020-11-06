@@ -8,13 +8,15 @@ export const Container = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  padding: 16px;
 `
 export const Title = styled.h1`
   margin-top: 20%;
   color: #fff;
+  text-align: center;
 `
 export const ArrowBack = styled(ArrowLeftOutlined)`
-  margin-top: 10%;
+  margin-top: 9%;
   align-self: flex-start;
   font-size: 35px;
   color: #fff;
