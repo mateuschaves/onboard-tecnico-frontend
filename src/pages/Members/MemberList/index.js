@@ -1,15 +1,13 @@
 import React from 'react'
 
-import MemberItem from '../../../components/MemberItem'
+import ListItem from '../../../components/ListItem'
 import { Container } from './styles'
 
-export default function MemberList({ members = [] }) {
-  function onPress(member) {}
-
+export default function MemberList({ members = [], onSelect }) {
   return (
     <Container>
       {members.map((member, key) => (
-        <MemberItem key={key} member={member} onPress={onPress} />
+        <ListItem key={key} title={member.name} subtitle={member.email} onPress={() => onSelect(member)} />
       ))}
     </Container>
   )
