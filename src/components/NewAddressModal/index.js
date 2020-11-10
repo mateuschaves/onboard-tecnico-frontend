@@ -9,11 +9,19 @@ export default function NewAddressModal({ visible, onSubmit, onClose }) {
   const [state, setState] = useState('')
   const [neighborhood, setNeighborhood] = useState('')
 
+  function handleSubmit() {
+    onSubmit(street, number, neighborhood, city, state)
+    setStreet('')
+    setNumber('')
+    setCity('')
+    setState('')
+    setNeighborhood('')
+  }
   return (
     <Modal
       title="Novo endereço"
       visible={visible}
-      onOk={() => onSubmit(street, number, neighborhood, city, state)}
+      onOk={handleSubmit}
       onCancel={onClose}
       okText="Adicionar"
       cancelText="Cancelar"

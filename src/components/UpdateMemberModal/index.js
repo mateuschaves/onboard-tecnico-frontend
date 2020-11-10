@@ -36,6 +36,10 @@ function UpdateMemberModal({ onSubmit, onDelete, visible, onClose, title, member
 
   function handleSubmit() {
     onSubmit(id, name, phone, memberType)
+    setName('')
+    setPhone('')
+    setId(0)
+    setMemberType('')
   }
 
   function handleDelete() {

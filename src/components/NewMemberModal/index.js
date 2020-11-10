@@ -17,31 +17,15 @@ function NewMemberModal({ onSubmit, visible, onClose, title }) {
 
   function handleSubmit() {
     onSubmit(name, email, phone, memberType)
+    setName('')
+    setEmail('')
+    setPhone('')
+    setMemberType('')
   }
 
   return (
-    <Drawer
-      title={title}
-      width={720}
-      onClose={onClose}
-      visible={visible}
-      bodyStyle={{ paddingBottom: 80 }}
-      footer={
-        <div
-          style={{
-            textAlign: 'right'
-          }}
-        >
-          <Button onClick={onClose} style={{ marginRight: 8 }}>
-            Cancelar
-          </Button>
-          <Button onClick={handleSubmit} type="primary">
-            Adicionar
-          </Button>
-        </div>
-      }
-    >
-      <Form layout="vertical" hideRequiredMark>
+    <Drawer title={title} width={720} onClose={onClose} visible={visible} bodyStyle={{ paddingBottom: 80 }}>
+      <Form layout="vertical" hideRequiredMark preserve={false} onFinish={handleSubmit}>
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item
@@ -84,6 +68,18 @@ function NewMemberModal({ onSubmit, visible, onClose, title }) {
             </Form.Item>
           </Col>
         </Row>
+        <Form.Item
+          style={{
+            textAlign: 'right'
+          }}
+        >
+          <Button onClick={onClose} style={{ marginRight: 8 }}>
+            Cancelar
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Adicionar
+          </Button>
+        </Form.Item>
       </Form>
     </Drawer>
   )

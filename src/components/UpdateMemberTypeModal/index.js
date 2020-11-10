@@ -17,6 +17,7 @@ function UpdateMemberTypeModal({ onSubmit, onDelete, visible, onClose, title, me
 
   function handleSubmit() {
     onSubmit(id, description)
+    setDescription('')
   }
 
   function handleDelete() {
