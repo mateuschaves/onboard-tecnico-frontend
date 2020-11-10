@@ -76,7 +76,9 @@ function NewMemberModal({ onSubmit, visible, onClose, title }) {
             >
               <Select placeholder="Escolha o tipo de membro" value={memberType} onChange={(e) => setMemberType(e)}>
                 {memberTypes.map((memberType) => (
-                  <Select.Option value={memberType.id}>{memberType.description}</Select.Option>
+                  <Select.Option key={memberType.id} value={memberType.id}>
+                    {memberType.description}
+                  </Select.Option>
                 ))}
               </Select>
             </Form.Item>

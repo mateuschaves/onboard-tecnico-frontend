@@ -23,12 +23,12 @@ export const Container = styled.div`
     width: 295px;
   }
 `
-export const Name = styled.span`
+export const Title = styled.span`
   color: #fff;
   font-size: 16px;
   font-weight: bold;
 `
-export const Email = styled.span`
+export const Subtitle = styled.span`
   color: ${darken(0.2, '#fff')};
   font-size: 14px;
 `

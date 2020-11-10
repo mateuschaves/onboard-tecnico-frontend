@@ -9,8 +9,8 @@ export const ButtonContainer = styled.button`
   align-items: center;
   background-color: #fff;
   border-radius: 8px;
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   border-radius: 90px;
   cursor: pointer;
   outline: inherit;
