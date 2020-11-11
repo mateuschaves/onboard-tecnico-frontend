@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+import colors from './config/colors'
 const GlobalStyle = createGlobalStyle`
   * {
   margin: 0;
@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background: #212121;
+  background: ${colors.backgroundColor};
 }
 
 body,

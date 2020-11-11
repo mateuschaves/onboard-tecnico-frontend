@@ -1,10 +1,12 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { shallow } from 'enzyme'
+import 'jest-styled-components'
+import Home from '.'
+import Button from '../../components/Button'
 
-import Home from './'
-
-test('render with title', async () => {
-  const { getByText } = render(<Home />)
-  const title = getByText(/Olá, o que deseja acesssar ?/)
-  expect(title).not.toBe(null)
+describe('Testing Home Page', () => {
+  it('should have two buttons on home screen', () => {
+    const wrapper = shallow(<Home />)
+    expect(wrapper.find(Button)).toHaveLength(2)
+  })
 })

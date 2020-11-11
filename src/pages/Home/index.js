@@ -15,7 +15,7 @@ function Home() {
   return (
     <Container>
       <Body>
-        <Title data-test="">Olá, o que deseja acessar ?</Title>
+        <Title>Olá, o que deseja acessar ?</Title>
         <Button onPress={() => handleNavigate('/members')}>Membros</Button>
         <Button onPress={() => handleNavigate('/member-types')}>Tipo de membros</Button>
       </Body>
