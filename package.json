@@ -7,8 +7,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.3.1",
     "antd": "^4.8.0",
     "axios": "^0.21.0",
+    "enzyme": "^3.11.0",
     "lottie-react-web": "^2.2.2",
     "lottie-web": "^5.7.4",
     "polished": "^4.0.3",
@@ -49,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^17.0.1"
   }
 }

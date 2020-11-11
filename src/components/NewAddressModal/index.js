@@ -26,7 +26,7 @@ export default function NewAddressModal({ visible, onSubmit, onClose }) {
       okText="Adicionar"
       cancelText="Cancelar"
     >
-      <Form layout="vertical" hideRequiredMark>
+      <Form layout="vertical" hideRequiredMark onFinish={handleSubmit}>
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item

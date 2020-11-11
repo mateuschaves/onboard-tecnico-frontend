@@ -14,24 +14,11 @@ function NewMemberTypeModal({ onSubmit, visible, onClose, title }) {
       title={title}
       width={400}
       onClose={onClose}
+      onFinish={handleSubmit}
       visible={visible}
       bodyStyle={{ paddingBottom: 80 }}
-      footer={
-        <div
-          style={{
-            textAlign: 'right'
-          }}
-        >
-          <Button onClick={onClose} style={{ marginRight: 8 }}>
-            Cancelar
-          </Button>
-          <Button onClick={handleSubmit} type="primary">
-            Adicionar
-          </Button>
-        </div>
-      }
     >
-      <Form layout="vertical" hideRequiredMark>
+      <Form layout="vertical" hideRequiredMark onFinish={handleSubmit}>
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item
@@ -47,6 +34,14 @@ function NewMemberTypeModal({ onSubmit, visible, onClose, title }) {
             </Form.Item>
           </Col>
         </Row>
+        <Form.Item style={{ textAlign: 'right' }}>
+          <Button onClick={onClose} style={{ marginRight: 8 }}>
+            Cancelar
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Adicionar
+          </Button>
+        </Form.Item>
       </Form>
     </Drawer>
   )

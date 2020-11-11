@@ -7,12 +7,7 @@ export default function MemberList({ memberTypes = [], onSelect }) {
   return (
     <Container>
       {memberTypes.map((memberType, key) => (
-        <ListItem
-          key={key}
-          title={memberType.description}
-          subtitle={memberType.status}
-          onPress={() => onSelect(memberType)}
-        />
+        <ListItem key={key} title={memberType.description} onPress={() => onSelect(memberType)} />
       ))}
     </Container>
   )
