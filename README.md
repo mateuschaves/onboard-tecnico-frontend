@@ -14,7 +14,7 @@ $ npm install
 
 :white_check_mark: React JS\
 :white_check_mark: Axios\
-:white_check_mark: Styled components
+:white_check_mark: Styled components\
 :white_check_mark: AntD
 
 ## Running the app
