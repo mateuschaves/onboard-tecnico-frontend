@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { darken } from 'polished'
-import { IoMdCreate } from 'react-icons/io'
+import { RightOutlined, UserOutlined } from '@ant-design/icons'
 
 export const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -22,22 +23,31 @@ export const Container = styled.div`
     width: 295px;
   }
 `
-export const Name = styled.span`
+export const Title = styled.span`
   color: #fff;
   font-size: 16px;
   font-weight: bold;
 `
-export const Email = styled.span`
+export const Subtitle = styled.span`
   color: ${darken(0.2, '#fff')};
   font-size: 14px;
 `
 export const Colum = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
+  margin-left: 12px;
 `
-export const EditIcon = styled(IoMdCreate)`
+export const RightIcon = styled(RightOutlined)`
+  display: flex;
+  justify-self: flex-end;
   transition: color 0.2s;
+  color: #fff;
   &:hover {
     color: ${darken(0.8, '#fff')};
   }
+`
+export const PersonIcon = styled(UserOutlined)`
+  color: #fff;
+  font-size: 35px;
 `
