@@ -5,6 +5,7 @@ import Routes from './Routes'
 import GlobalStyle from './globalStyle'
 import 'antd/dist/antd.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-activity/dist/react-activity.css'
 
 ReactDOM.render(
   <React.StrictMode>

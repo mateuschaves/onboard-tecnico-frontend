@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { toast } from 'react-toastify'
+import { message } from 'antd'
 
 import Body from '../../components/Body'
 import MemberList from './MemberList'
@@ -20,11 +21,10 @@ function Members() {
   const [showUpdateMemberModal, setShowUpdateMemberModal] = useState(false)
   const [member, setMember] = useState({})
   const [loading, setLoading] = useState(false)
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(true)
   const history = useHistory()
-
-  useEffect(() => {
-    getMembers()
-  }, [])
 
   function handleBack() {
     history.goBack()
@@ -34,10 +34,30 @@ function Members() {
     setLoading(true)
     setShowUpdateMemberModal(false)
     api
-      .get('/members')
+      .get('/members', { params: { page: 1, limit: 10 } })
       .then(({ data }) => setMembers(data.rows))
       .catch(() => toast('Erro ao listar todos os membros', { type: 'error' }))
       .finally(() => setLoading(false))
+  }
+
+  function handleInfiniteOnLoad() {
+    setLoadingMore(true)
+    if (page === 1) setLoading(true)
+    api
+      .get('/members', { params: { page, limit: 10 } })
+      .then(({ data }) => {
+        if (data.count) {
+          setMembers((members) => [...members, ...data.rows])
+          setPage((page) => page + 1)
+        } else {
+          setHasMore(false)
+        }
+      })
+      .catch(() => toast('Erro ao listar os membros', { type: 'error' }))
+      .finally(() => {
+        setLoadingMore(false)
+        setLoading(false)
+      })
   }
 
   function deleteMember(id) {
@@ -79,7 +99,15 @@ function Members() {
   }
 
   function renderMembers() {
-    return <MemberList members={members} onSelect={handleSelectUser} />
+    return (
+      <MemberList
+        members={members}
+        onSelect={handleSelectUser}
+        handleInfiniteOnLoad={handleInfiniteOnLoad}
+        loading={loadingMore}
+        hasMore={hasMore}
+      />
+    )
   }
 
   function renderMembersLoading() {
@@ -96,6 +124,7 @@ function Members() {
       </>
     )
   }
+
   return (
     <Container>
       <ArrowBack onClick={handleBack} />
