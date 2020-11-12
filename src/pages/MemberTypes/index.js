@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { toast } from 'react-toastify'
 
@@ -20,11 +20,10 @@ function MemberTypes() {
   const [showUpdateMemberTypeModal, setShowUpdateMemberTypeModal] = useState(false)
   const [memberType, setMemberType] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(true)
   const history = useHistory()
-
-  useEffect(() => {
-    getMemberTypes()
-  }, [])
 
   function handleBack() {
     history.goBack()
@@ -37,6 +36,26 @@ function MemberTypes() {
       .then(({ data }) => setMemberTypes(data.rows))
       .catch(() => toast('Erro ao listar todos os tipos de membro', { type: 'error' }))
       .finally(() => setLoading(false))
+  }
+
+  function handleInfiniteOnLoad() {
+    setLoadingMore(true)
+    if (page === 1) setLoading(true)
+    api
+      .get('/member-types', { params: { page, limit: 10 } })
+      .then(({ data }) => {
+        if (data.count) {
+          setMemberTypes((members) => [...members, ...data.rows])
+          setPage((page) => page + 1)
+        } else {
+          setHasMore(false)
+        }
+      })
+      .catch(() => toast('Erro ao listar os tipos de membros', { type: 'error' }))
+      .finally(() => {
+        setLoadingMore(false)
+        setLoading(false)
+      })
   }
 
   function deleteMemberType(id) {
@@ -53,7 +72,7 @@ function MemberTypes() {
     setLoading(true)
     setShowNewMemberTypeModal(false)
     api
-      .post('/member-types', { description, status: 'asd' })
+      .post('/member-types', { description, status: 'confirmed' })
       .then(() => {
         getMemberTypes()
       })
@@ -64,7 +83,7 @@ function MemberTypes() {
   function updateMember(id, description) {
     setShowUpdateMemberTypeModal(false)
     api
-      .put(`/member-types/${id}`, { description, status: 'asd' })
+      .put(`/member-types/${id}`, { description, status: 'confirmed' })
       .then(() => {
         getMemberTypes()
       })
@@ -78,7 +97,15 @@ function MemberTypes() {
   }
 
   function renderMemberTypes() {
-    return <MemberTypesList memberTypes={memberTypes} onSelect={handleSelectMemberType} />
+    return (
+      <MemberTypesList
+        memberTypes={memberTypes}
+        onSelect={handleSelectMemberType}
+        handleInfiniteOnLoad={handleInfiniteOnLoad}
+        loading={loadingMore}
+        hasMore={hasMore}
+      />
+    )
   }
 
   function renderMemberTypesLoading() {

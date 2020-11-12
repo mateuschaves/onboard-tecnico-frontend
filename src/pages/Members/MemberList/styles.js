@@ -5,7 +5,6 @@ export const ScrollView = styled.div`
   height: 500px;
 `
 export const LoadingContainer = styled.div`
-  position: absolute;
   bottom: 40px;
   width: 100%;
   text-align: center;

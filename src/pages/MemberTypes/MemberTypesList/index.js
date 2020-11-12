@@ -1,14 +1,35 @@
 import React from 'react'
 
-import ListItem from '../../../components/ListItem'
-import { Container } from './styles'
+import { List } from 'antd'
+import { Bounce } from 'react-activity'
+import InfiniteScroll from 'react-infinite-scroller'
 
-export default function MemberList({ memberTypes = [], onSelect }) {
+import ListItem from '../../../components/ListItem'
+import { ScrollView, Loading } from './styles'
+
+export default function MemberList({ memberTypes = [], onSelect, handleInfiniteOnLoad, loading, hasMore }) {
   return (
-    <Container>
-      {memberTypes.map((memberType, key) => (
-        <ListItem key={key} title={memberType.description} onPress={() => onSelect(memberType)} />
-      ))}
-    </Container>
+    <ScrollView>
+      <InfiniteScroll
+        initialLoad={true}
+        pageStart={0}
+        loadMore={handleInfiniteOnLoad}
+        hasMore={!loading && hasMore}
+        useWindow={false}
+      >
+        <List
+          dataSource={memberTypes}
+          renderItem={(memberType) => (
+            <ListItem key={memberType.id} title={memberType.description} onPress={() => onSelect(memberType)} />
+          )}
+        />
+
+        {loading && hasMore && (
+          <Loading>
+            <Bounce color="#fff" />
+          </Loading>
+        )}
+      </InfiniteScroll>
+    </ScrollView>
   )
 }
