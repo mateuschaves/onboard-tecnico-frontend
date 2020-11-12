@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { toast } from 'react-toastify'
-import { message } from 'antd'
 
 import Body from '../../components/Body'
 import MemberList from './MemberList'
